@@ -1,8 +1,7 @@
 import { Steps, DatePicker, Button } from "antd";
 import { useState, useContext, createContext } from "react";
-import { Card, Divider } from "antd";
+import { Input, Checkbox, Card } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
-import { Input } from "antd";
 
 const FormContext = createContext(1);
 
@@ -10,7 +9,7 @@ const Form = () => {
   const [step, setStep] = useState(0);
 
   const handleNext = () => {
-    if (step < 5) setStep(step + 1);
+    if (step < 4) setStep(step + 1);
   };
 
   const handlePrevious = () => {
@@ -39,8 +38,7 @@ const Form = () => {
                 { title: "STEP 2", description: "Parking Spaces & Rates" },
                 { title: "STEP 3", description: "Payment Processing Info" },
                 { title: "STEP 4", description: "Preferences" },
-                { title: "STEP 5", description: "Authorization" },
-                { title: "STEP 6", description: "Preview & Generate PDF" },
+                { title: "STEP 5", description: "Sign Off Agreement" },
               ]}
             />
           </div>
@@ -86,7 +84,6 @@ const FormSection = () => {
       {step === 2 && <Section2 />}
       {step === 3 && <Section3 />}
       {step === 4 && <Section4 />}
-      {step === 5 && <Section5 />}
     </div>
   );
 };
@@ -199,9 +196,9 @@ const Section1 = () => {
         >
           <div className="text-md text-gray-800 flex items-center space-x-2">
             <span>{option.price.daily} / Day</span>
-            <Divider type="vertical" />
+
             <span>{option.price.weekly} / Week</span>
-            <Divider type="vertical" />
+
             <span>{option.price.monthly} / Month</span>
           </div>
           <div className="mt-4 flex items-center text-green-600">
@@ -256,11 +253,99 @@ const Section2 = () => {
 };
 
 const Section3 = () => {
-  return <>3</>;
+  return (
+    <>
+      <h2 className="text-lg font-bold mb-6">Setup Your Preferences</h2>
+
+      <div className="flex flex-col gap-6">
+        {/* Preferred Email Address */}
+        <div>
+          <label className="block text-md font-semibold mb-2">
+            Preferred Email Address
+          </label>
+          <Input
+            placeholder="Enter email address"
+            className="w-full rounded-lg"
+          />
+          <span className="text-sm text-gray-600">
+            Enter the email address for receiving communications.
+          </span>
+        </div>
+
+        {/* Preferred SMS/Text/Phone Call */}
+        <div>
+          <label className="block text-md font-semibold mb-2">
+            Preferred SMS/Text/Phone Call
+          </label>
+          <Input
+            placeholder="Enter Phone Number"
+            className="w-full rounded-lg"
+          />
+          <span className="text-sm text-gray-600">
+            Enter the phone number for SMS or voice calls.
+          </span>
+        </div>
+
+        {/* Alternate SMS/Text/Phone Call */}
+        <div>
+          <label className="block text-md font-semibold mb-2">
+            Alternate SMS/Text/Phone Call
+          </label>
+          <Input
+            placeholder="Enter Phone Number"
+            className="w-full rounded-lg"
+          />
+          <span className="text-sm text-gray-600">
+            Enter the alternate phone number for SMS or voice calls.
+          </span>
+        </div>
+
+        {/* Notification Preferences */}
+        <div className="flex flex-col gap-2">
+          <Checkbox>
+            I want emails and SMS text notices for all communications.
+          </Checkbox>
+          <Checkbox>
+            SMS Texts will only be used for customer problems with reservations.
+          </Checkbox>
+          <Checkbox>
+            I do not want any texts and prefer voice calls in the event of a
+            problem.
+          </Checkbox>
+        </div>
+
+        <h3 className="text-md font-semibold mb-4">Emergency Access Contact</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <Input placeholder="Contact Name" className="rounded-lg" />
+          <Input placeholder="Phone Number" className="rounded-lg" />
+        </div>
+        <span className="text-sm text-gray-600">
+          For emergency customer problems.
+        </span>
+      </div>
+    </>
+  );
 };
+
 const Section4 = () => {
-  return <>4</>;
-};
-const Section5 = () => {
-  return <>5</>;
+  return (
+    <>
+      <h2 className="text-lg font-bold mb-6">Agreement</h2>
+
+      <div className="flex flex-col gap-6">
+        <div className="h-56 w-full rounded-lg"></div>
+
+        <h3 className="text-md font-semibold mb-4">Emergency Access Contact</h3>
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid col-span-1 gap-2">
+            <Input placeholder="Contact Name" className="rounded-lg" />
+            <Input placeholder="Phone Number" className="rounded-lg" />
+          </div>
+          <div className="grid col-span-1">
+            <Input placeholder="Contact Name" className="rounded-lg" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
