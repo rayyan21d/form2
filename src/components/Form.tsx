@@ -19,10 +19,9 @@ const Form = () => {
   return (
     <>
       <div className="flex flex-col min-h-screen bg-blue-900">
-        {/* Main Content Section */}
-        <div className="grid grid-cols-7 p-8 gap-10 flex-grow">
-          {/* Sidebar with Steps */}
-          <div className="col-span-2 text-white">
+        <div className="grid grid-cols-1 lg:grid-cols-7 p-4 lg:p-8 gap-10 flex-grow">
+          {/* Progress Section */}
+          <div className="col-span-1 lg:col-span-2 text-white">
             <div className="mb-8 text-center bg-gray-100 p-4 rounded-lg">
               <img
                 src="/path-to-logo.png"
@@ -30,21 +29,23 @@ const Form = () => {
                 className="h-16 mx-auto"
               />
             </div>
-            <Steps
-              direction="vertical"
-              current={step}
-              items={[
-                { title: "STEP 1", description: "Agreement Basics" },
-                { title: "STEP 2", description: "Parking Spaces & Rates" },
-                { title: "STEP 3", description: "Payment Processing Info" },
-                { title: "STEP 4", description: "Preferences" },
-                { title: "STEP 5", description: "Sign Off Agreement" },
-              ]}
-            />
+            <div>
+              <Steps
+                direction="vertical"
+                current={step}
+                items={[
+                  { title: "STEP 1", description: "Agreement Basics" },
+                  { title: "STEP 2", description: "Parking Spaces & Rates" },
+                  { title: "STEP 3", description: "Payment Processing Info" },
+                  { title: "STEP 4", description: "Preferences" },
+                  { title: "STEP 5", description: "Sign Off Agreement" },
+                ]}
+              />
+            </div>
           </div>
 
           {/* Main Form Section */}
-          <div className="col-span-5">
+          <div className="col-span-1 lg:col-span-5">
             <FormContext.Provider value={step}>
               <FormSection />
             </FormContext.Provider>
@@ -52,19 +53,19 @@ const Form = () => {
         </div>
 
         {/* Navigation Buttons Section at Bottom */}
-        <div className="flex justify-between p-8 space-x-4 bg-blue-900">
+        <div className="flex justify-between p-4 lg:p-8 space-x-4 bg-blue-900">
           <Button
             onClick={handlePrevious}
             disabled={step === 0}
             type="primary"
-            className="w-1/2 text-white font-semibold py-2 rounded-lg border-0"
+            className="w-full lg:w-1/2 text-white font-semibold py-2 rounded-lg border-0"
           >
             Previous
           </Button>
           <Button
             onClick={handleNext}
             type="primary"
-            className="w-1/2 bg-green-700 text-white font-semibold py-2 rounded-lg  "
+            className="w-full lg:w-1/2 bg-green-700 text-white font-semibold py-2 rounded-lg"
           >
             Next
           </Button>
@@ -78,7 +79,7 @@ const FormSection = () => {
   const step = useContext(FormContext);
 
   return (
-    <div className="p-6 lg:min-w-96 border-2 rounded-lg shadow-md bg-white text-black font-sans">
+    <div className="p-2 lg:p-6 border-2 rounded-lg shadow-md bg-white text-black font-sans">
       {step === 0 && <Section0 />}
       {step === 1 && <Section1 />}
       {step === 2 && <Section2 />}
@@ -91,8 +92,7 @@ const FormSection = () => {
 export default Form;
 
 const Section0 = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onDateChange = (date: any, dateString: any) => {
+  const onDateChange = (date, dateString) => {
     console.log("Selected Date:", dateString);
     console.log(date);
   };
@@ -134,7 +134,7 @@ const Section0 = () => {
             </div>
           </div>
           <div className="mt-10">
-            <div className="p-2 text-green-500  rounded-lg bg-green-100 font-semibold text-center">
+            <div className="p-2 text-green-500 rounded-lg bg-green-100 font-semibold text-center">
               Feel Free to reach out to us at +1
             </div>
           </div>
