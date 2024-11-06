@@ -92,7 +92,8 @@ const FormSection = () => {
 export default Form;
 
 const Section0 = () => {
-  const onDateChange = (date, dateString) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onDateChange = (date: any, dateString: any) => {
     console.log("Selected Date:", dateString);
     console.log(date);
   };
