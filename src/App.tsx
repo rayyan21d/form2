@@ -1,14 +1,12 @@
-import Navbar from "./components/Navbar";
-import Form from "./components/Form";
+import Navbar from "./components/navbar/Navbar";
+import Form from "./components/form/FormSections";
 
 function App() {
   return (
     <>
-      <main className="flex flex-col bg-blue-900 min-h-screen">
+      <main className="flex flex-col bg-blue-900 ">
         <Navbar />
-        <section className="flex items-center justify-center">
-          <Form />
-        </section>
+        <Form />
       </main>
     </>
   );
